@@ -14,5 +14,4 @@ switch (process.env.NODE_ENV) {
 
 module.exports = new Sequelize(URL, {
   dialect: "postgres",
-  // define: { freezeTableName: true },
 });

@@ -3,19 +3,18 @@ const { engine } = require("express-handlebars");
 const bodyParser = require("body-parser");
 const path = require("path");
 const db = require("./config/database");
-// require("dotenv").config();
 
 db.authenticate()
-  .then(() => console.log("Database connect Mr Aakash 😎"))
-  .catch((err) => console.log("Error🥲: " + err));
+  .then(() => console.log("Hey there Mr Aakash😎, Database is connect now."))
+  .catch((err) => console.log("Error🥲 : " + err));
 
 const app = express();
 
 app.engine("handlebars", engine({ extname: ".hbs", defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-// app.set("views", "./views");
 
-// app.get("/", (req, res) => res.send("INDEX"));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.get("/", (req, res) => res.render("index", { layout: "landing" }));
 app.use("/jobs", require("./routes/jobs"));
 
@@ -25,5 +24,7 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(
   PORT,
-  console.log(`Hi AAKASH, servers are up! Now you can play with the code 🥹`)
+  console.log(
+    `Hi AAKASH Sir, Servers are up! Now you can play with the code. 🥹`
+  )
 );
